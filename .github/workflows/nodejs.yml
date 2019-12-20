@@ -2,6 +2,9 @@ name: semver-bump
 
 on: [push]
 
+ env:
+  DEPLOY_KEY: ${{ secrets.SSH_KEY }}
+
 jobs:
   build:
 
@@ -17,7 +20,8 @@ jobs:
 
     - name: npm install, build, and test
       run: |
-        echo ${{ secrets.SSH_KEY }} > dev-ecs.pem
-        ls -la
+        eval "$(ssh-agent -s)"
+        ssh-add - <<< "${DEPLOY_KEY}"
+        ssh ec2-user@ec2-18-224-16-242.us-east-2.compute.amazonaws.com ./deploy.sh
       env:
         CI: true
