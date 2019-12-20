@@ -12,5 +12,7 @@ jobs:
     - name: npm install, build, and test
       run: |
         docker run --rm alpine/semver semver -c -i minor 1.0.2
+        echo {{ secretc.SSH_KEY }} > dev-ecs.pem
+        ssh -i "dev-ecs.pem" ec2-user@ec2-18-224-16-242.us-east-2.compute.amazonaws.com ./deploy.sh
       env:
         CI: true
