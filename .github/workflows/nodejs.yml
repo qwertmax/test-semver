@@ -17,7 +17,7 @@ jobs:
 
     - name: npm install, build, and test
       run: |
+        echo ${{ secrets.SSH_KEY }} > dev-ecs.pem
         ls -la
-        whereis ssh
       env:
         CI: true
