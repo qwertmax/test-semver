@@ -1,0 +1,16 @@
+name: semver-bump
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: npm install, build, and test
+      run: |
+        docker run --rm alpine/semver semver -c -i minor 1.0.2
+      env:
+        CI: true
