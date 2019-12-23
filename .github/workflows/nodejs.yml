@@ -15,8 +15,10 @@ jobs:
 
     - name: semver
       run: |
-        docker run --rm alpine/semver semver -c -i patch 1.0.2
-
+        ver=$(git describe --abbrev=0 --tags)
+        new_ver=$(docker run --rm alpine/semver semver -c -i patch $ver)
+        git tag $new_ver
+        git push --tags
 
     # - name: deploy
     #   run: |
