@@ -16,6 +16,12 @@ jobs:
     - name: semver
       run: |
         docker run --rm alpine/semver semver -c -i minor 1.0.2
+    - name: new branch
+      run: |
+        git checkout build
+        git merge master
+        git push origin build
+
 
     # - name: deploy
     #   run: |
