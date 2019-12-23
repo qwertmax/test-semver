@@ -15,7 +15,7 @@ jobs:
 
     - name: semver
       run: |
-        git describe --tags
+        git describe --abbrev=0 --tags
 
     # - name: deploy
     #   run: |
