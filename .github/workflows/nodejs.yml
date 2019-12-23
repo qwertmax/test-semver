@@ -15,11 +15,12 @@ jobs:
 
     - name: semver
       run: |
+        ls -la
         ver=$(git describe --abbrev=0 --tags)
         new_ver=$(docker run --rm alpine/semver semver -c -i patch $ver)
         echo $ver
         echo $new_ver
-        git tag $new_ver
+        git tag v$new_ver
         git push --tags
 
     # - name: deploy
