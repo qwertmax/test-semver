@@ -16,9 +16,10 @@ jobs:
     - name: semver
       run: |
         docker run --rm alpine/semver semver -c -i minor 1.0.2
+
     - name: new branch
+    - uses: actions/checkout@build
       run: |
-        git checkout build
         git merge master
         git push
 
