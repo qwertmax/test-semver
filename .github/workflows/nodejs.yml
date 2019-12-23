@@ -22,7 +22,6 @@ jobs:
         git merge master
         git push origin build
 
-
     # - name: deploy
     #   run: |
     #     docker run --rm qwertmax/ssh bash -c '${{ secrets.CMD}}'
