@@ -16,8 +16,8 @@ jobs:
     - name: semver
       run: |
         ls -la
-        git describe --tags --always
-        ver=$(git describe --tags --always)
+        git describe --tags
+        ver=$(git describe --tags)
         new_ver=$(docker run --rm alpine/semver semver -c -i patch $ver)
         echo $ver
         echo $new_ver
