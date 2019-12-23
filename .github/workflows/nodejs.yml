@@ -20,7 +20,7 @@ jobs:
       run: |
         git checkout build
         git merge master
-        git push origin build
+        git push
 
     # - name: deploy
     #   run: |
