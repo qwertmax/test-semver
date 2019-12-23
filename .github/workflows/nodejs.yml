@@ -17,6 +17,8 @@ jobs:
       run: |
         ver=$(git describe --abbrev=0 --tags)
         new_ver=$(docker run --rm alpine/semver semver -c -i patch $ver)
+        echo $ver
+        echo $new_ver
         git tag $new_ver
         git push --tags
 
