@@ -15,17 +15,17 @@ jobs:
 
     - name: semver
       run: |
-        ls -la
         git describe --tags
-        ver=$(git describe --tags)
-        new_ver=$(docker run --rm alpine/semver semver -c -i patch $ver)
-        echo $ver
-        echo $new_ver
-        git tag v$new_ver
-        git push --tags
 
     # - name: deploy
     #   run: |
     #     docker run --rm qwertmax/ssh bash -c '${{ secrets.CMD}}'
       env:
         CI: true
+
+        # ver=$(git describe --tags)
+        # new_ver=$(docker run --rm alpine/semver semver -c -i patch $ver)
+        # echo $ver
+        # echo $new_ver
+        # git tag v$new_ver
+        # git push --tags
