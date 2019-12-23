@@ -12,7 +12,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    # - name: npm install, build, and test
+
+    - name: semver
       run: |
         docker run --rm alpine/semver semver -c -i minor 1.0.2
 
