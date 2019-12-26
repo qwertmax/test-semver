@@ -40,7 +40,6 @@ jobs:
     - name: print VERSION
       run: |
         ls -la
-        ls -la version
 
 
 
