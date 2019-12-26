@@ -28,8 +28,10 @@ jobs:
 
     - name: la
       run: |
-        pwd
-        ls -la
+        cd build
+        git merge master
+        git push
+
 
     # - name: semver
     #   run: |
