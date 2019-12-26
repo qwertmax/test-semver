@@ -4,6 +4,8 @@ on: [push]
 
 env:
   DEPLOY_KEY: ${{ secrets.SSH_KEY }}
+  USERNAME: qwertmax
+  IMAGE: test-semver
 
 jobs:
   build:
@@ -25,6 +27,23 @@ jobs:
         git tag -a "$version" -m "version $version"
         git push
         git push --tags
+
+    - name: login
+      run: |
+        version=$(cat VERSION)
+        echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u ${{ secrets.DOCKERHUB_USER }} --password-stdin
+
+    - name: build
+      run: |
+        version=$(cat VERSION)
+        docker build -t $USERNAME/$IMAGE . 
+        docker tag $USERNAME/$IMAGE:latest $USERNAME/$IMAGE:$version
+
+    - name: deploy
+      run: |
+        version=$(cat VERSION)
+        docker push $USERNAME/$IMAGE:latest
+        docker push $USERNAME/$IMAGE:$version
 
     # - name: deploy
     #   run: |
