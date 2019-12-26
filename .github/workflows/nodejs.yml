@@ -32,29 +32,26 @@ jobs:
         version=$(docker run --rm alpine/semver semver -c -i patch $version)
         git config --global user.email "qwertmax@gmail.com"
         git config --global user.name "Maxim Tishchento"
-        # git add -A
-        # git commit -m "version $version"
         git tag -a "$version" -m "version $version"
-        # git push
         git push --tags
 
 
-    # - name: login
-    #   run: |
-    #     version=$(cat VERSION)
-    #     echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u ${{ secrets.DOCKERHUB_USER }} --password-stdin
+    - name: login
+      run: |
+        version=$(cat VERSION)
+        echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u ${{ secrets.DOCKERHUB_USER }} --password-stdin
 
-    # - name: build
-    #   run: |
-    #     version=$(cat VERSION)
-    #     docker build -t $USERNAME/$IMAGE . 
-    #     docker tag $USERNAME/$IMAGE:latest $USERNAME/$IMAGE:$version
+    - name: build
+      run: |
+        version=$(cat VERSION)
+        docker build -t $USERNAME/$IMAGE . 
+        docker tag $USERNAME/$IMAGE:latest $USERNAME/$IMAGE:$version
 
-    # - name: deploy
-    #   run: |
-    #     version=$(cat VERSION)
-    #     docker push $USERNAME/$IMAGE:latest
-    #     docker push $USERNAME/$IMAGE:$version
+    - name: deploy
+      run: |
+        version=$(cat VERSION)
+        docker push $USERNAME/$IMAGE:latest
+        docker push $USERNAME/$IMAGE:$version
 
     # - name: deploy
     #   run: |
