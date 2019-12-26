@@ -29,12 +29,11 @@ jobs:
         git fetch --all --tags
         version=$(git describe --tags --abbrev=0)
         echo "version: $version"
-        docker run --rm alpine/semver semver -c -i patch $version > VERSION
+        version=$(docker run --rm alpine/semver semver -c -i patch $version)
         git config --global user.email "qwertmax@gmail.com"
         git config --global user.name "Maxim Tishchento"
         # git add -A
         # git commit -m "version $version"
-        version=$(cat VERSION)
         git tag -a "$version" -m "version $version"
         # git push
         git push --tags
