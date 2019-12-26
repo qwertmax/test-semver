@@ -24,15 +24,15 @@ jobs:
 
     - name: semver
       run: |
-        version=$(cat VERSION)
+        version=$(git describe --abbrev=0)
         echo "version: $version"
         docker run --rm alpine/semver semver -c -i patch $version > VERSION
         git config --global user.email "qwertmax@gmail.com"
         git config --global user.name "Maxim Tishchento"
-        git add -A
-        git commit -m "version $version"
-        git tag -a "$version" -m "version $version"
-        git push
+        # git add -A
+        # git commit -m "version $version"
+        # git tag -a "$version" -m "version $version"
+        # git push
         git push --tags
 
     # - name: login
