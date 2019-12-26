@@ -26,8 +26,6 @@ jobs:
 
     - name: semver
       run: |
-        git fetch --all --tags
-        git describe --tags --abbrev=0
         version=$(git describe --tags --abbrev=0)
         echo "version: $version"
         docker run --rm alpine/semver semver -c -i patch $version > VERSION
@@ -35,9 +33,11 @@ jobs:
         git config --global user.name "Maxim Tishchento"
         # git add -A
         # git commit -m "version $version"
+        version=$(cat VERSION)
         git tag -a "$version" -m "version $version"
         # git push
         git push --tags
+
 
     # - name: login
     #   run: |
