@@ -9,6 +9,7 @@ on:
       - master
 
 env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   DEPLOY_KEY: ${{ secrets.SSH_KEY }}
   USERNAME: qwertmax
   IMAGE: test-semver
