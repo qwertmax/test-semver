@@ -22,6 +22,10 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: create VERSION
+      run: |
+        echo 1.0.0 > VERSION
+
     - name: Upload VERSION
       uses: actions/upload-artifact@v1
       with:
