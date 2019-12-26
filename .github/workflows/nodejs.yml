@@ -22,41 +22,18 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    # - name: create VERSION
-    #   run: |
-    #     echo 1.0.0 > VERSION
-
-    # - name: Upload VERSION
-    #   uses: actions/upload-artifact@v1
-    #   with:
-    #     name: version
-    #     path: VERSION
-
-    - name: Download VERSION
-      uses: actions/download-artifact@v1
-      with:
-        name: version
-
-    - name: print VERSION
+    - name: semver
       run: |
-        ls -la
-
-
-
-    # - name: semver
-    #   run: |
-    #     version=$(cat VERSION)
-    #     echo "version: $version"
-    #     docker run --rm alpine/semver semver -c -i patch $version > VERSION
-    #     git config --global user.email "qwertmax@gmail.com"
-    #     git config --global user.name "Maxim Tishchento"
-    #     git checkout -b build
-    #     git merge master
-    #     git add -A
-    #     git commit -m "version $version"
-    #     git tag -a "$version" -m "version $version"
-    #     git push --set-upstream origin build
-    #     git push --tags
+        version=$(cat VERSION)
+        echo "version: $version"
+        docker run --rm alpine/semver semver -c -i patch $version > VERSION
+        git config --global user.email "qwertmax@gmail.com"
+        git config --global user.name "Maxim Tishchento"
+        git add -A
+        git commit -m "version $version"
+        git tag -a "$version" -m "version $version"
+        git push
+        git push --tags
 
     # - name: login
     #   run: |
