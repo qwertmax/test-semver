@@ -5,5 +5,5 @@ RUN apk add --no-cache \
   ca-certificates \
   bash
 
-COPY dev-ecs.pem /dev-ecs.pem
-RUN chmod 600 dev-ecs.pem
+# COPY dev-ecs.pem /dev-ecs.pem
+# RUN chmod 600 dev-ecs.pem
