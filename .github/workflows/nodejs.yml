@@ -22,16 +22,15 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - uses: actions/checkout@v2
+    - name: Upload VERSION
+      uses: actions/upload-artifact@v1
       with:
-        ref: build
-        path: build
+        name: version
+        path: VERSION
 
-    - name: la
+    - name: print VERSION
       run: |
-        cd build
-        git merge master
-        git push
+        cat VERSION
 
 
     # - name: semver
