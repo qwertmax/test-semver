@@ -25,6 +25,7 @@ jobs:
     - name: semver
       run: |
         git fetch --all --tags
+        git describe --tags --abbrev=0
         version=$(git describe --tags --abbrev=0)
         echo "version: $version"
         docker run --rm alpine/semver semver -c -i patch $version > VERSION
